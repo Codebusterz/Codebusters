@@ -1,5 +1,5 @@
 <?php
-
+	
 	$bdd = mysqli_connect("localhost","root","","[projet]lolgames");
 
 	if(isset($_POST["login"]))
@@ -7,19 +7,21 @@
 		$pseudo= $_POST["pseudo"];
 		$mdp = sha1($_POST["mdp"]);
 	 
-	    $query = "INSERT INTO login (pseudo, mdp) VALUES ('".$pseudo."','".$mdp."'); ";
-	    $comp1 = "SELECT * FROM `login` natural join users";
+		// Vérification des identifiants
+		$req = $bdd->query('SELECT mdp FROM users WHERE pseudo = "'.$pseudo.'"');;
+		$resultat = $req->fetch_array();
+		$req->free();
 
-		if ($comp1 == TRUE)
+		if (count($resultat) < 1)
 		{
-			echo "connected!!!!!!!!!!!!!";
+		    echo 'Mauvais identifiant ou mot de passe !';
 		}
-		else
+		elseif ($resultat['mdp'] == $mdp)
 		{
-			echo "looser";
+			session_start();
+		    $_SESSION['pseudo'] = $pseudo;
+		    echo 'Vous êtes connecté !';
 		}
-		mysqli_query($bdd,"truncate login");
-	    $res = mysqli_query($bdd, $query) or die(mysql_error($bdd));
 	}
 
 	include_once("inscription.html");
