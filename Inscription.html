@@ -1,59 +1,49 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>CodeBusters</title>
-	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="inscription.css">
-</head>
-<body>
 
 	<div><h1> VIENDEZ ! C'EST LE FUN ! </h1>
 	<h6>C'est fait exprès*</h6></div>
 
-	<form method="POST" action="inscription.php">
+	<form method="POST" action="pages/inscription.php">
 	<table>
 		<tr>
 			<td><label for="nom">Nom</label></td>
-			<td><input type="text" name="nom" id="nom" value=""></td>
+			<td><input type="text" name="nom" id="nom" placeholder="Dupond" required></td>
 		</tr>
 		<tr>
 			<td><label for="prenom">Prénom</label></td>
-			<td><input type="text" name="prenom" id="prenom" value=""></td>
+			<td><input type="text" name="prenom" id="prenom" placeholder="Jean" required></td>
 		</tr>	
 		<tr>
 			<td><label for="pseudo">Pseudonyme</label></td>
-			<td><input type="text" name="pseudo" id="pseudo" value=""></td>
+			<td><input type="text" name="pseudo" id="pseudo" placeholder="J_Dupond" required></td>
 		</tr>
 		<tr>
 			<td><label for="email">Email</label></td>
-			<td><input type="email" name="email" id="email" value=""></td>
+			<td><input type="email" name="email" id="email" placeholder="jdupond@email.com" required></td>
 		</tr>
 		<tr>
 			<td><label for="mdp">Mot de passe</label></td>
-			<td><input type="password" name="mdp" id="mdp" value=""></td>
+			<td><input type="password" name="mdp" id="mdp" placeholder="azerty" required></td>
 		</tr>
 		<tr>
 			<td><label for="age">Age</label></td>
-			<td><input type="text" name="age" id="age" value=""></td>
+			<td><input type="text" name="age" id="age" placeholder="20" required></td>
 		</tr>
 			<td><input type="submit" name="valider" value="OK"></td>
 		</tr>
 	</table>
 	</form>
-	<form method="post" action="login.php">
+	<form method="post" action="pages/login.php">
 		<table>
 			<tr>
 				<td><label for="pseudo">Pseudonyme</label></td>
-				<td><input type="text" name="pseudo" id="pseudo" value=""></td>
+				<td><input type="text" name="pseudo" id="pseudo" placeholder="J_Dupond" required></td>
 			</tr>
 			<tr>
 				<td><label for="mdp">Mot de passe</label></td>
-				<td><input type="password" name="mdp" id="mdp" value=""></td>
+				<td><input type="password" name="mdp" id="mdp" placeholder="azerty" required></td>
 			</tr>
 			<tr>
 				<td><input type="submit" name="login" value="OK"></td>
 			</tr>
 		</table>
 	</form>
-</body>
-</html>
