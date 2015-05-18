@@ -1,0 +1,52 @@
+<?php include "connectionc2.php"; ?>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<title>Commentaires2</title>
+	<!-- Stylesheets-->
+	<link rel="stylesheet" type="text/css" href="stylec2.css">
+</head>
+<body>
+
+<?php 
+$consult1 = mysqli_query($connection,"SELECT * FROM Commentaires") or die (mysql_error($connection));
+while ($row=mysqli_fetch_assoc($consult1)) {
+	# code...
+	echo "<div class='commentaires'>Utilisateur:".$row['user']."<br></br>".$row['commentaire']."</div>";
+}
+
+?>
+
+<center><form action="" method="POST">
+	<input type="text" name="user" placeholder="Utilisateur"><br><br>
+	<input type="text" name="commentaire" placeholder="Commentaire"><br><br>
+	<input type="submit" name="envoyer" value="Envoyer commentaire">
+</form></center>
+
+<?php
+	
+	if (isset($_POST['envoyer'])) {
+		# code...
+		$user=utf8_decode(mysqli_real_escape_string($connection, $_POST['user']));
+		$commentaire=utf8_decode(mysqli_real_escape_string($connection, $_POST['commentaire']));
+		if ($user == '' or $commentaire =='') {
+			# code...
+			echo "nous sommes désolé, il faut remplir les tout les champs";
+		}else{
+			$insert=mysqli_query($connection, "INSERT INTO commentaires (nick, commentaire)VALUES('".$user."','".$commentaire."')")or die (mysqli_error($connection));
+			echo "le commentairea été introduit correctement";
+		}
+	}
+
+
+?>
+
+</body>
+</html>
+
+<!-- guys I have this message in the box after I run the page, help me fix it please 
+
+Notice: Undefined index: user in C:\wamp\www\phpppe\commentaires2\commentaires2.php on line 16
+
+thanks -->
