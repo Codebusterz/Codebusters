@@ -1,6 +1,6 @@
 <?php
 
-	$bdd = mysqli_connect("localhost","root","","[projet]lolgames");
+	$bdd = mysqli_connect("localhost","root","","projet_2015");
 
 	if (isset($_POST["inscription"]))
 	{
