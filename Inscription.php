@@ -1,7 +1,5 @@
 <?php
-
 	$bdd = mysqli_connect("localhost","root","","projet_2015");
-
 	if (isset($_POST["inscription"]))
 	{
 		$nom = $_POST["nom"];
@@ -10,10 +8,12 @@
 		$email = $_POST["email"];
 		$mdp = sha1($_POST["mdp"]);
 		$age = $_POST["age"];
-
 		$query = "INSERT INTO users (nom, prenom, pseudo, mdp, email, age) VALUES ('".$nom."','".$prenom."','".$pseudo."','".$mdp."','".$email."','".$age."'); ";
 		$res = mysqli_query($bdd, $query) or die(mysql_error($bdd));
+		echo "ok";
 	}
-
-	include_once("inscription.html");
+	else
+	{
+		echo "C'est de la merde tu es con";
+	}
 ?>
