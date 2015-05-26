@@ -1,0 +1,63 @@
+<head>
+ 
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link href="../style.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../ckeditor/ckeditor.js"></script> 
+<title>Ajouter un article</title>
+</head>
+
+<h2>Ajout d'un article</h2>
+
+<?php
+ 
+	session_start();
+	$bdd = mysqli_connect("localhost","root","","projet_lolgames");
+
+
+//Traitement du formulaire
+if(isset($_POST["Valider"]))
+{
+	$titre = htmlspecialchars($_POST["titre"]);
+	$description = htmlspecialchars($_POST["description"]);
+	$contenu = $_POST["contenu"];
+ 
+	{
+		$result = mysqli_query($bdd, " INSERT INTO article (titre, description, contenu) VALUES ( '".$titre."', '".$description."', '".$contenu."' ); ");
+		if (!$result) {
+			die('Requête invalide : ' . mysql_error());
+		}
+		else{
+			$message_ok = '<div class="erreur"><a name="ok"></a><b>Page enregistr&eacute;e avec succ&egrave;s!</b></div>';
+		}
+	}
+}  ?>	 
+
+<form action="#ok" method="post">
+
+<p>Titre de l'article :<br/>
+<input name="titre" size="40" maxlength="40" value="<?php if (!empty($_POST["titre"])) { echo stripcslashes(htmlspecialchars($_POST["titre"],ENT_QUOTES)); } ?>" type="text"/>
+</p>
+
+<p>Description de l'article :<br/>
+<textarea name="description" rows="10" cols="50" ><?php
+if (!empty($_POST["description"])) {
+	echo stripcslashes(htmlspecialchars($_POST["description"],ENT_QUOTES));
+}
+?></textarea>
+</p>
+<p>Contenu de l'article :<br/>
+<textarea name="contenu" rows="10" cols="50" ><?php
+if (!empty($_POST["contenu"])) {
+	echo stripcslashes(htmlspecialchars($_POST["contenu"],ENT_QUOTES));
+}
+?></textarea>
+<script type="text/javascript">
+CKEDITOR.replace( 'contenu' );
+</script> 
+</p>
+
+<p>
+<input name="Valider" value="Valider" type="submit"/>
+<input name="Effacer" value="Effacer" type="reset"/>
+</p>
+</form> 
