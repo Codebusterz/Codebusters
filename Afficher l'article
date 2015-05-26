@@ -1,0 +1,11 @@
+<?php
+
+	session_start();
+	$bdd = mysqli_connect("localhost","root","","projet_lolgames");
+
+	$consult1 = mysqli_query($bdd,"SELECT * FROM `article` JOIN `users` ON `article`.`id_user` = `users`.`id_user`") or die (mysqli_error($bdd));
+	while ($row=mysqli_fetch_assoc($consult1)) {
+	echo "<div class='article'>".$row['pseudo']."<br></br>".$row['contenu']."</div>";
+	}
+
+?>
