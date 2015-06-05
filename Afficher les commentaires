@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Page article</title>
+	<meta charset="utf-8"/>
+	<link rel="stylesheet" type="text/css" href=""/>
+</head>
+
+<body>
+	<div>
+		<?php
+				session_start();
+				$bdd = mysqli_connect("localhost","root","","projet_lolgames");
+
+				$consult1 = mysqli_query($bdd,"SELECT * FROM `commentaire` JOIN `users` ON `commentaire`.`id_user` = `users`.`id_user`") or die (mysqli_error($bdd));
+				while ($row=mysqli_fetch_assoc($consult1)) {
+				echo "<div class='article'>".$row['pseudo']."<br></br>".$row['commentaire']."</div>";
+				}
+		?>
+	</div>
+</body>
+
+
+</html>
